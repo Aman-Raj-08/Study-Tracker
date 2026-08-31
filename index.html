@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Tracker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Study Tracker</h1>
+        <p>Track your study sessions and progress, with time and date stamps.</p>
+    </header>
+
+
+    <main>
+
+        <!-- Dashboard -->
+         <section class="dashboard">
+            <h2>Dashboard</h2>
+
+            <div class="stats-container">
+
+                <div class="stat-card">
+                    <h3>Today</h3>
+                    <p id="today-hours">0.0</p>
+                    <span>hours</span>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Total Study</h3>
+                    <p id="total-hours">0.0</p>
+                    <span>hours</span>
+                </div>
+
+                <div class="stat-card">
+                    <h3>Sessions</h3>
+                    <p id="session-count">0</p>
+                    <span>sessions</span>
+                </div>
+            </div>
+        
+         </section>
+
+         <section class="goal-section">
+            <h2>Daily Study Goal🎯</h2>
+            <div class="goal-content">
+                <label for="daily-goal">Goal (Hours)</label>
+                <input
+                    type="number"
+                    id="daily-goal"
+                    min="0.5"
+                    step="0.5"
+                    value="4"
+                >
+
+                <button
+                    type="button"
+                    id="save-goal"
+                >Save Goal
+                </button>
+
+                <div class="goal-progress">
+                    <div
+                    class="goal-progress-bar"
+                    id="goal-progress-bar"
+                    ></div>
+                </div>
+                <p id="goal-text">0/4 hours</p>
+            </div>
+         </section>
+
+         <section class="streak-section">
+            <h2>Study Streak 🔥</h2>
+            <div class="streak-box">
+                <p id="streak-count">0</p>
+                <span>days in a row</span>
+            </div>
+         </section>
+
+         <section>
+            <h2>Weekly Progress</h2>
+            <div class="weekly-chart-container">
+                <canvas id="weekly-chart"></canvas>
+            </div>
+         </section>
+
+        <!-- Add Study Session -->
+        <section class="study-form-section">
+
+            <h2>Add Study Session</h2>
+
+            <form id="study-form">
+
+                <label for="subject">Subject</label>
+
+                <select id="subject" required>
+                    <option value="">Select Subject</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Maths">Maths</option>
+                    <option value="English">English</option>
+                    <option value="Any other">Any other</option>
+                </select>
+
+
+                <label for="topic">Topic</label>
+
+                <input
+                    type="text"
+                    id="topic"
+                    placeholder="Enter topic"
+                    required
+                >
+
+
+                <label for="duration">Duration (hours)</label>
+
+                <input
+                    type="number"
+                    id="duration"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Enter study hours"
+                    required
+                >
+
+                <label for="study-date">Study Date</label>
+
+                <input type="date" id="study-date">
+
+                <button type="submit">Add Session</button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Study Chart -->
+        <section class="dashboard">
+
+            <h2>Study Stats</h2>
+
+            <div class="chart-container">
+
+                <canvas id="subject-chart"></canvas>
+
+            </div>
+
+        </section>
+
+
+        <!-- Study Sessions -->
+        <h2>Study Sessions</h2>
+
+        <section class="study-sessions">
+
+            <div id="session-list">
+                <p>No study sessions added yet.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+        <p>My Study Tracker & Visualizer</p>
+    </footer>
+
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
