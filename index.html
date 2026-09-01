@@ -12,16 +12,36 @@
 
 <body>
 
-    <header>
-        <h1>Study Tracker</h1>
-        <p>Track your study sessions and progress, with time and date stamps.</p>
+    <header class="main-header">
+        <div class="header-content">
+            <div>
+                <h1>Study Tracker</h1>
+                <p>Track your sessions, watch your progress build, and stay a little more honest with yourself.</p>
+            </div>
+            <button
+                id="theme-toggle"
+                class="theme-toggle"
+                type="button"
+            >🌙</button>
+        </div>
+        <nav class="main-nav">
+            <a href="#dashboard">Dashboard</a>
+            <a href="#goals">Goals</a>
+            <a href="#statistics">Statistics</a>
+            <a href="#history">History</a>
+        </nav>
     </header>
 
 
     <main>
 
-        <!-- Dashboard -->
-         <section class="dashboard">
+        <section class="quote-section">
+            <p id="daily-quote">"Small steps every day beat one big push once in a while."</p>
+        </section>
+
+        <section 
+            class="dashboard"
+            id="dashboard">
             <h2>Dashboard</h2>
 
             <div class="stats-container">
@@ -45,12 +65,36 @@
                 </div>
             </div>
         
-         </section>
+        </section>
 
-         <section class="goal-section">
+        <section class="insights-section" id="insights">
+            <h2>🔎 Your Study Insights</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>🏆 Strongest Subject</h3>
+                    <p id="insight-best-subject">Log a session to see this</p>
+                </div>
+                <div class="insight-card">
+                    <h3>📈 Most Productive Day</h3>
+                    <p id="insight-best-day">Log a session to see this</p>
+                </div>
+                <div class="insight-card">
+                    <h3>⏱️ Average Session</h3>
+                    <p id="insight-avg-length">–</p>
+                </div>
+                <div class="insight-card">
+                    <h3>🗓️ Sessions This Week</h3>
+                    <p id="insight-week-sessions">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section 
+            class="goal-section"
+            id="goals">
             <h2>Daily Study Goal🎯</h2>
             <div class="goal-content">
-                <label for="daily-goal">Goal (Hours)</label>
+                <label for="daily-goal">Daily Goal (Hours)</label>
                 <input
                     type="number"
                     id="daily-goal"
@@ -72,23 +116,109 @@
                     ></div>
                 </div>
                 <p id="goal-text">0/4 hours</p>
-            </div>
-         </section>
 
-         <section class="streak-section">
+                <p
+                    id="goal-status"
+                    class="goal-status"
+                >Keep Going! 💪</p>
+            </div>
+        </section>
+
+        <section
+        class="weekly-statistics"
+        id="statistics">
+
+            <h2>Weekly Goal 📅</h2>
+
+            <div class="weekly-goal-content">
+
+                <label for="weekly-goal">Weekly Target (hours)</label>
+
+                <input
+                    type="number"
+                    id="weekly-goal"
+                    min="1"
+                    step="0.5"
+                    value="28"
+                >
+
+                <button
+                    type="button"
+                    id="save-weekly-goal"
+                >
+                    Save Weekly Goal
+                </button>
+
+
+                <div class="weekly-goal-stats">
+
+                    <div>
+
+                        <h3>Weekly Target</h3>
+
+                        <p id="weekly-target">
+                            28 hours
+                        </p>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Studied</h3>
+
+                        <p id="weekly-studied">
+                            0 hours
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="weekly-progress">
+
+                    <div
+                        class="weekly-progress-bar"
+                        id="weekly-progress-bar"
+                    ></div>
+
+                </div>
+
+
+                <p
+                    id="weekly-goal-text"
+                    class="weekly-goal-text"
+                >
+                    0 / 28 hours
+                </p>
+
+            </div>
+
+        </section>
+
+        <section class="streak-section">
             <h2>Study Streak 🔥</h2>
             <div class="streak-box">
                 <p id="streak-count">0</p>
                 <span>days in a row</span>
             </div>
-         </section>
+        </section>
 
-         <section>
+        <section>
             <h2>Weekly Progress</h2>
             <div class="weekly-chart-container">
                 <canvas id="weekly-chart"></canvas>
             </div>
-         </section>
+        </section>
+
+        <section class="achievements-section">
+
+            <h2>Achievements 🏆</h2>
+
+            <div
+                class="achievements-container"
+                id="achievements-container"
+            ></div>
+        </section>
 
         <!-- Add Study Session -->
         <section class="study-form-section">
@@ -107,6 +237,7 @@
                     <option value="Computer Science">Computer Science</option>
                     <option value="Maths">Maths</option>
                     <option value="English">English</option>
+                    <option value="Informatics Practices">Informatics Practices</option>
                     <option value="Any other">Any other</option>
                 </select>
 
@@ -136,6 +267,14 @@
 
                 <input type="date" id="study-date">
 
+                <label for="notes">Notes (optional)</label>
+
+                <textarea
+                    id="notes"
+                    rows="2"
+                    placeholder="Anything worth remembering about this session?"
+                ></textarea>
+
                 <button type="submit">Add Session</button>
 
             </form>
@@ -156,16 +295,157 @@
 
         </section>
 
+        <section class="timer-section">
 
-        <!-- Study Sessions -->
-        <h2>Study Sessions</h2>
+            <h2>🍅 Study Timer</h2>
 
-        <section class="study-sessions">
+            <p class="timer-subtitle">
+                Pick a focus length, hit start, and let it run in the background while you work.
+            </p>
 
-            <div id="session-list">
-                <p>No study sessions added yet.</p>
+            <div id="timer-display" class="timer-display">
+                25:00
             </div>
 
+            <div class="timer-modes">
+
+                <button
+                    type="button"
+                    class="timer-mode active"
+                    data-minutes="25">
+                    🍅 Pomodoro
+                    <span>25 min</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="timer-mode"
+                    data-minutes="50">
+                    🔥 Focus
+                    <span>50 min</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="timer-mode"
+                    data-minutes="90">
+                    🧠 Deep Work
+                    <span>90 min</span>
+                </button>
+
+            </div>
+
+            <div class="custom-timer">
+
+                <label for="custom-minutes">
+                    Custom Minutes
+                </label>
+
+                <input
+                    type="number"
+                    id="custom-minutes"
+                    min="1"
+                    max="180"
+                    placeholder="Enter minutes"
+                >
+
+                <button
+                    type="button"
+                    id="set-custom-timer">
+                    Set Timer
+                </button>
+
+            </div>
+
+            <div class="timer-controls">
+
+                <button
+                    type="button"
+                    id="start-timer">
+                    ▶️ Start
+                </button>
+
+                <button
+                    type="button"
+                    id="pause-timer">
+                    ⏸️ Pause
+                </button>
+
+                <button
+                    type="button"
+                    id="reset-timer">
+                    🔄 Reset
+                </button>
+            </div>
+
+            <p
+                id="timer-status"
+                class="timer-status">
+                Ready to study 📚
+            </p>
+
+        </section>
+
+        <section class="activity-section">
+            <h2>📅 Study Activity</h2>
+            <p class="activity-subtitle">Your study consistency over the last few weeks</p>
+            <div
+                id="activity-grid"
+                class="activity-calendar">
+                <div
+                    id="activity-calendar"
+                    class="calendar-grid">
+                </div>
+                <div class="activity-legend">
+                    <span>Less</span>
+                    <span class="activity-box level-0"></span>
+                    <span class="activity-box level-1"></span>
+                    <span class="activity-box level-2"></span>
+                    <span class="activity-box level-3"></span>
+                    <span class="activity-box level-4"></span>
+                    <span>More</span>
+                </div>
+            </div>
+        </section>
+
+        <section
+            class="study-history"
+            id="history">
+            <h2>Study History</h2>
+
+            <div class="backup-buttons">
+                <button id="export-csv">Export CSV</button>
+                <button id="backup-json">Backup Data</button>
+                <label class="restore-label">Restore Data
+                    <input
+                        type="file"
+                        id="restore-json"
+                        accept=".json"
+                        hidden>
+                </label>
+                <button id="clear-data" class="clear-data-btn">🗑️ Clear All Data</button>
+            </div>
+
+            <div class="session-controls">
+                <input
+                    type="text"
+                    id="search-sessions"
+                    placeholder="Search by subject, topic, or notes..."
+                >
+
+                <select id="filter-subject">
+                    <option value="all">All Subjects</option>
+                </select>
+
+                <select id="sort-sessions">
+                    <option value="newest">Newest First</option>
+                    <option value="oldest">Oldest First</option>
+                    <option value="longest">Longest Duration</option>
+                    <option value="shortest">Shortest Duration</option>
+                </select>
+            </div>
+
+            <div id="session-list"></div>
         </section>
 
     </main>
@@ -175,8 +455,36 @@
         <p>My Study Tracker & Visualizer</p>
     </footer>
 
+    <div id="wizard-cursor" aria-hidden="true">🧙</div>
 
-    
+    <button id="ai-toggle" class="ai-toggle" type="button" aria-label="Open Study Buddy">🤖</button>
+
+    <div id="ai-panel" class="ai-panel hidden">
+        <div class="ai-header">
+            <span>📊 Study Buddy</span>
+            <button id="ai-close" type="button" aria-label="Close Study Buddy">✕</button>
+        </div>
+
+        <div id="ai-messages" class="ai-messages"></div>
+
+        <div class="ai-suggestions" id="ai-suggestions">
+            <button type="button" class="ai-chip" data-question="How many hours have I studied this week?">This week's hours</button>
+            <button type="button" class="ai-chip" data-question="What's my strongest subject?">Strongest subject</button>
+            <button type="button" class="ai-chip" data-question="Am I on track for my daily goal?">Daily goal check</button>
+            <button type="button" class="ai-chip" data-question="Give me a study tip">Study tip</button>
+        </div>
+
+        <form id="ai-form" class="ai-form">
+            <input
+                type="text"
+                id="ai-input"
+                placeholder="Ask about your study data..."
+                autocomplete="off"
+            >
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="script.js"></script>
 
