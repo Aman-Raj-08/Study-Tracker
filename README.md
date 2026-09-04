@@ -101,7 +101,7 @@ Study Tracker helps students record study sessions, set goals, track streaks, an
 
 1. Clone this repository:
 2. 
-git clone https://github.com/YOUR-USERNAME/study-tracker.git
+git clone https://github.com/AMAN-RAJ-08/study-tracker.git
 
 3. Open the project in VS Code.
 
